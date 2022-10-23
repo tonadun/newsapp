@@ -13,8 +13,7 @@
 
             <div class="news-info">
                 
-                <img v-if="news.image_url" v-bind:src="news.image_url"  />
-                <img class="empty-image" v-else/>
+                <img @error="imageLoadOnError" v-bind:src="news.image_url"  />
                 <p class="mx-auto text-base font-medium leading-relaxed">
                     {{ news.text }}
                 </p>
@@ -28,8 +27,12 @@
 export default{
     props: {
         news: Object    
+    },
+    methods:{
+        imageLoadOnError(e) {
+          e.target.src = "https://via.placeholder.com/800"
+        }
     }
-    
 }
 </script>
 
